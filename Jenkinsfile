@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        APP_NAME="lbg-API-base"
+        APP_NAME="lbg-api-base"
         TAG="latest"
         DOCKERHUB_CREDS=credentials("DOCKERHUB_CREDS")
     }
