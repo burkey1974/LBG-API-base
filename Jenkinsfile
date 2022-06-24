@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    environemnt {
+        image_name="burkey1974/lbg-api-app:latest"
     stages {
         stage('Test') {
             steps {
@@ -10,7 +12,11 @@ pipeline {
         stage('Build') {
             steps {
                 //
-                sh "echo Build stage"
+                sh """
+                echo "building image"
+		docker build -t $image_name .
+                echo
+		"""
             }
         }
         stage('Deploy') {
