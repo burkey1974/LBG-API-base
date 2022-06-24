@@ -1,7 +1,10 @@
 version: "3.8"
 services:
- nginx:
-   image: nginx:alpine
-   ports:
-   - target: 80
-     protocol: tcp
+  api:
+    container_name: lbg-api-app
+    image: lbg-api-app:latest
+    build: .
+    ports:
+    - target: 8080
+      published: 80
+
