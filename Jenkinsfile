@@ -3,7 +3,7 @@ pipeline {
     environment {
         APP_NAME="lbg-api-base"
         TAG="latest"
-        DOCKERHUB_CREDS=credentials("DOCKERHUB_CREDS")
+        DOCKERHUB_CREDS=credentials("dockerhub_creds")
     }
     stages {
         stage('Test') {
