@@ -1,7 +1,8 @@
 pipeline {
     agent any
-    environemnt {
+    environment {
         image_name="burkey1974/lbg-API-base:latest"
+    }
     stages {
         stage('Test') {
             steps {
