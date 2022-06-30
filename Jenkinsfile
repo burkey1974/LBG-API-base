@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         APP_NAME="lbg-api-app-paul"
-        TAG="latest"
+        TAG="buildnumber"
         //DOCKERHUB_CREDS=credentials("dockerhub_creds")
 	REGISTRY="gcr.io/lbg6-130622"
     }
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh """
                 echo "Building image:"
-                docker build -t ${REGISTRY}/${APP_NAME}:${TAG} .
+                docker build -t ${REGISTRY}/${APP_NAME}:${BUILD_NUMBER} .
                 echo
                 """
             }
@@ -27,7 +27,7 @@ pipeline {
                 //sh "docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW"
                 sh """
                 echo "Push image to registry:"
-                docker push ${REGISTRY}/${APP_NAME}:${TAG}
+                docker push ${REGISTRY}/${APP_NAME}:${BUILD_NUMBER}
                 echo
                 """
             }
@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 //
-                sh "echo Deploy stage"
+                sh "kubetcl apply -f kubernetes"
             }
         }
     }
